@@ -62,7 +62,11 @@
     if (!frame || event.source !== frame.contentWindow) return;
     if (!['https://form.jotform.com', 'https://form.jotformeu.com', 'https://eu.jotform.com', 'https://eu-submit.jotform.com', 'https://submit.jotform.com'].includes(event.origin)) return;
     let data = event.data;
-    if (typeof data === 'string') { try { data = JSON.parse(data); } catch (_) { return; } }
+    if (typeof data === 'string') {
+      const height = /^setHeight:([0-9]+):263263760374056$/.exec(data);
+      if (height) { frame.style.height = Math.min(6000, Math.max(400, Number(height[1]))) + 'px'; return; }
+      try { data = JSON.parse(data); } catch (_) { return; }
+    }
     if (!data || data.action !== 'submission-completed') return;
     if (data.formID && String(data.formID) !== '263263760374056') return;
     const nested = data.payload || data.data || {};
