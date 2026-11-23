@@ -193,7 +193,7 @@ footer p.tag{color:rgba(244,241,234,0.7); max-width:480px; margin:0 auto 30px;}
   <h2>Visto abbastanza? Parliamone in videocall</h2>
   <p>Fissiamo una videocall: ti mostriamo i moduli più adatti al tuo evento e rispondiamo dal vivo a tutte le tue domande.</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="mailto:info@withyouagency.it?subject=Prenotazione%20videocall%20-%20Soluzioni%20digitali">Prenota una videocall</a>
+    <a class="btn btn-primary" href="/contatti.html">Prenota una videocall</a>
     <a class="btn btn-ghost" href="/">Torna ai servizi</a>
   </div>
 </section>
@@ -327,7 +327,7 @@ function openModal(i){
   document.getElementById('m-sub').textContent = m.sub;
   document.getElementById('m-intro').textContent = m.intro;
   document.getElementById('m-list').innerHTML = m.list.map(x=>'<li>'+x+'</li>').join('');
-  document.getElementById('m-cta').href = 'mailto:info@withyouagency.it?subject=' + encodeURIComponent('Prenotazione videocall - '+m.title);
+  document.getElementById('m-cta').href = '/contatti.html?servizio=' + encodeURIComponent(m.title);
   if(!modal.classList.contains('open')){ lastFocus = document.activeElement; }
   modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
   modal.querySelector('.modal-close').focus();

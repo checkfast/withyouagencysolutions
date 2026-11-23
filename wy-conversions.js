@@ -3,10 +3,12 @@
   'use strict';
   const ADS_ID = 'AW-11466731418';
   const DESTINATION = ADS_ID + '/mQjKCNryxLgdEJrf4dsq';
+  const FORM_DESTINATION = ADS_ID + '/6UAmCMH3hZcZEJrf4dsq';
   const KEY = 'wy_measurement_consent_v1';
   let allowed = false;
   let loaded = false;
   let recorded = false;
+  let completedSubmission = ''; 
   window.dataLayer = window.dataLayer || [];
   const tag = function () { window.dataLayer.push(arguments); };
   tag('consent', 'default', {
@@ -22,7 +24,7 @@
       ad_storage: 'granted', analytics_storage: 'denied',
       ad_user_data: 'denied', ad_personalization: 'denied'
     });
-    if (loaded) return;
+    if (loaded) { recordSubmission(); return; }
     loaded = true;
     tag('js', new Date());
     tag('config', ADS_ID, { allow_ad_personalization_signals: false });
@@ -30,6 +32,7 @@
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + ADS_ID;
     document.head.appendChild(script);
+    recordSubmission();
   }
   function disable() {
     allowed = false;
@@ -45,14 +48,52 @@
       });
     });
   }
+  function recordSubmission() {
+    if (!allowed) return;
+    const id = completedSubmission;
+    if (!/^[0-9]{15,25}$/.test(id)) return;
+    const key = 'wy_submission_' + id;
+    try { if (localStorage.getItem(key)) return; } catch (_) {}
+    tag('event', 'conversion', { send_to: FORM_DESTINATION, transaction_id: id });
+    try { localStorage.setItem(key, 'recorded'); } catch (_) {}
+  }
+  window.addEventListener('message', event => {
+    const frame = document.getElementById('wy-contact-form');
+    if (!frame || event.source !== frame.contentWindow) return;
+    if (!['https://form.jotform.com', 'https://form.jotformeu.com', 'https://eu.jotform.com', 'https://eu-submit.jotform.com', 'https://submit.jotform.com'].includes(event.origin)) return;
+    let data = event.data;
+    if (typeof data === 'string') { try { data = JSON.parse(data); } catch (_) { return; } }
+    if (!data || data.action !== 'submission-completed') return;
+    if (data.formID && String(data.formID) !== '263263760374056') return;
+    const nested = data.payload || data.data || {};
+    const providedId = data.submissionID || data.submissionId || data.sid || nested.submissionID || nested.submissionId || nested.sid;
+    const id = String(providedId || completedSubmission || (Date.now().toString() + Math.floor(Math.random() * 1000000).toString().padStart(6, '0')));
+    if (!/^[0-9]{15,25}$/.test(id)) return;
+    completedSubmission = id;
+    recordSubmission();
+  });
   function start() {
+    // Keep the existing contact buttons, and route quote requests to the saved form.
+    if (location.pathname !== '/contatti.html') {
+      document.querySelectorAll('a[href^="mailto:info@withyouagency.it"]').forEach(link => {
+        link.href = '/contatti.html';
+      });
+      document.addEventListener('click', event => {
+        const link = event.target.closest && event.target.closest('a[href^="mailto:info@withyouagency.it"]');
+        if (link && !link.closest('#wy-consent')) {
+          event.preventDefault();
+          location.assign('/contatti.html');
+        }
+      }, true);
+    }
+
     const style = document.createElement('style');
     style.textContent = '#wy-consent{position:fixed;z-index:99999;bottom:16px;left:16px;right:16px;max-width:760px;margin:auto;padding:20px;background:#fff;color:#102334;border:1px solid #c9d2db;border-radius:14px;box-shadow:0 8px 40px #0004;font:15px/1.5 system-ui,sans-serif}#wy-consent[hidden]{display:none}#wy-consent p{margin:0 0 12px}#wy-consent a{color:#103c76;text-decoration:underline}#wy-consent .wy-actions{display:flex;gap:12px;flex-wrap:wrap}#wy-consent button{font:600 15px system-ui;padding:11px 18px;min-height:44px;background:#102334;color:#fff;border:1px solid #102334;border-radius:7px;cursor:pointer}#wy-consent button:focus-visible,#wy-preferences:focus-visible{outline:3px solid #d02172;outline-offset:3px}#wy-preferences{display:block;margin:14px auto;background:transparent;color:inherit;border:1px solid currentColor;border-radius:6px;padding:8px 12px;font:inherit;cursor:pointer}';
     document.head.appendChild(style);
     const panel = document.createElement('section');
     panel.id = 'wy-consent';
     panel.setAttribute('aria-label', 'Preferenze misurazione pubblicitaria');
-    panel.innerHTML = '<p><strong>Misurazione degli annunci</strong></p><p>Con il tuo consenso utilizziamo Google Ads per misurare le visite provenienti dagli annunci e i clic su “Scrivici”, tramite cookie e dati di navigazione. Il clic non conferma l’invio di un’email. Non attiviamo pubblicità personalizzata. Puoi rifiutare e usare tutti i servizi, oppure cambiare scelta dal pulsante “Preferenze cookie” a fondo pagina. <a href="https://policies.google.com/technologies/partner-sites?hl=it" target="_blank" rel="noopener noreferrer">Come Google utilizza i dati</a>. Titolare: With You SRL, <a href="mailto:info@withyouagency.it">info@withyouagency.it</a>. La scelta viene conservata per 6 mesi.</p><div class="wy-actions"><button type="button" id="wy-accept">Accetta misurazione</button><button type="button" id="wy-reject">Rifiuta misurazione</button></div>';
+    panel.innerHTML = '<p><strong>Misurazione degli annunci</strong></p><p>Con il tuo consenso utilizziamo Google Ads per misurare le visite provenienti dagli annunci, gli invii del modulo e i clic sui contatti, tramite cookie e dati di navigazione. Il clic non conferma l’invio di un’email. Non attiviamo pubblicità personalizzata. Puoi rifiutare e usare tutti i servizi, oppure cambiare scelta dal pulsante “Preferenze cookie” a fondo pagina. <a href="https://policies.google.com/technologies/partner-sites?hl=it" target="_blank" rel="noopener noreferrer">Come Google utilizza i dati</a>. Titolare: With You SRL, <a href="mailto:info@withyouagency.it">info@withyouagency.it</a>. La scelta viene conservata per 6 mesi.</p><div class="wy-actions"><button type="button" id="wy-accept">Accetta misurazione</button><button type="button" id="wy-reject">Rifiuta misurazione</button></div>';
     document.body.appendChild(panel);
     const preference = document.createElement('button');
     preference.type = 'button';
