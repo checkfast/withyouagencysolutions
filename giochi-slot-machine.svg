@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 853 1000" width="853" height="1000" font-family="Inter,Helvetica,Arial,sans-serif">
+<defs>
+<radialGradient id="bg" cx="50%" cy="30%" r="75%"><stop offset="0" stop-color="#1f3a52"/><stop offset=".55" stop-color="#0b1c2c"/><stop offset="1" stop-color="#050d16"/></radialGradient>
+<radialGradient id="sc" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#3b1060"/><stop offset="1" stop-color="#14051f"/></radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd54a"/><stop offset="1" stop-color="#e09a12"/></linearGradient>
+<linearGradient id="reel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9c9c9"/><stop offset=".3" stop-color="#fff"/><stop offset=".7" stop-color="#fff"/><stop offset="1" stop-color="#c9c9c9"/></linearGradient>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d6d"/><stop offset="1" stop-color="#c9183a"/></linearGradient>
+<linearGradient id="pole" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a3946"/><stop offset=".5" stop-color="#53636f"/><stop offset="1" stop-color="#2a3946"/></linearGradient>
+<filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<rect width="853" height="1000" fill="url(#bg)"/>
+<rect x="415" y="760" width="22" height="195" fill="url(#pole)"/>
+<ellipse cx="426" cy="960" rx="120" ry="10" fill="#1c2a36"/>
+<rect x="96" y="110" width="661" height="660" rx="44" fill="#11161c" stroke="#2c3a46" stroke-width="3"/>
+<clipPath id="c"><rect x="122" y="136" width="609" height="608" rx="22"/></clipPath>
+<g clip-path="url(#c)">
+<rect x="122" y="136" width="609" height="608" fill="url(#sc)"/>
+<rect x="122" y="136" width="609" height="64" fill="#9fceb2"/>
+<text x="426" y="175" text-anchor="middle" font-size="20" font-weight="800" letter-spacing="3.6" fill="#081420">YOUR BRAND</text>
+<text x="426" y="285" text-anchor="middle" font-size="58" font-weight="900" fill="#ff9d00" filter="url(#glow)">JACKPOT!</text>
+<text x="426" y="289" text-anchor="middle" font-size="58" font-weight="900" fill="#a4510a">JACKPOT!</text>
+<text x="426" y="285" text-anchor="middle" font-size="58" font-weight="900" fill="#ffd54a">JACKPOT!</text>
+<g fill="#fff6c2"><circle cx="173" cy="311" r="7"/><circle cx="229" cy="311" r="7"/><circle cx="285" cy="311" r="7"/><circle cx="341" cy="311" r="7"/><circle cx="397" cy="311" r="7"/><circle cx="455" cy="311" r="7"/><circle cx="511" cy="311" r="7"/><circle cx="567" cy="311" r="7"/><circle cx="623" cy="311" r="7"/><circle cx="679" cy="311" r="7"/></g>
+<rect x="166" y="326" width="521" height="250" rx="26" fill="#ffbe28" opacity=".5" filter="url(#glow)"/>
+<rect x="166" y="326" width="521" height="250" rx="26" fill="url(#gold)"/>
+<rect x="180" y="340" width="157" height="222" rx="14" fill="url(#reel)"/>
+<rect x="348" y="340" width="157" height="222" rx="14" fill="url(#reel)"/>
+<rect x="516" y="340" width="157" height="222" rx="14" fill="url(#reel)"/>
+<g font-size="130" font-weight="900" fill="#d7263d" text-anchor="middle"><text x="258" y="498">7</text><text x="426" y="498">7</text><text x="594" y="498">7</text></g>
+<rect x="196" y="449" width="461" height="4" fill="#d7263d" opacity=".55"/>
+<text x="426" y="626" text-anchor="middle" font-size="30" font-weight="800" letter-spacing="2.4" fill="#fff">HAI VINTO UN PREMIO</text>
+<rect x="301" y="660" width="250" height="64" rx="32" fill="#7d0b22"/>
+<rect x="301" y="652" width="250" height="64" rx="32" fill="url(#red)"/>
+<text x="426" y="694" text-anchor="middle" font-size="28" font-weight="900" letter-spacing="2.8" fill="#fff">GIRA</text>
+</g>
+</svg>

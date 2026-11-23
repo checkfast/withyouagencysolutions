@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 853 1000" width="853" height="1000" font-family="Inter,Helvetica,Arial,sans-serif">
+<defs>
+<radialGradient id="bg" cx="50%" cy="30%" r="75%"><stop offset="0" stop-color="#1f3a52"/><stop offset=".55" stop-color="#0b1c2c"/><stop offset="1" stop-color="#050d16"/></radialGradient>
+<radialGradient id="sc" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#0f2f3f"/><stop offset="1" stop-color="#06121b"/></radialGradient>
+<radialGradient id="off" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#24394a"/><stop offset="1" stop-color="#13222e"/></radialGradient>
+<radialGradient id="on" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#eaffef"/><stop offset=".45" stop-color="#9fceb2"/><stop offset="1" stop-color="#3e8f66"/></radialGradient>
+<linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9fceb2"/><stop offset="1" stop-color="#ffd54a"/></linearGradient>
+<linearGradient id="pole" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a3946"/><stop offset=".5" stop-color="#53636f"/><stop offset="1" stop-color="#2a3946"/></linearGradient>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>
+</defs>
+<rect width="853" height="1000" fill="url(#bg)"/>
+<rect x="415" y="760" width="22" height="195" fill="url(#pole)"/>
+<ellipse cx="426" cy="960" rx="120" ry="10" fill="#1c2a36"/>
+<rect x="96" y="110" width="661" height="660" rx="44" fill="#11161c" stroke="#2c3a46" stroke-width="3"/>
+<clipPath id="c"><rect x="122" y="136" width="609" height="608" rx="22"/></clipPath>
+<g clip-path="url(#c)">
+<rect x="122" y="136" width="609" height="608" fill="url(#sc)"/>
+<rect x="122" y="136" width="609" height="64" fill="#9fceb2"/>
+<text x="426" y="175" text-anchor="middle" font-size="20" font-weight="800" letter-spacing="3.6" fill="#081420">YOUR BRAND</text>
+<g font-size="18" font-weight="800" letter-spacing="2.5" fill="#f4f1ea" fill-opacity=".65"><text x="156" y="239">TEMPO</text><text x="426" y="239" text-anchor="middle">LIVELLO</text><text x="697" y="239" text-anchor="end">PUNTI</text></g>
+<g font-size="44" font-weight="800" fill="#9fceb2"><text x="156" y="290">0,27 s</text><text x="426" y="290" text-anchor="middle">4</text><text x="697" y="290" text-anchor="end">1.840</text></g>
+<g fill="url(#off)" stroke="#f4f1ea" stroke-opacity=".08" stroke-width="3">
+<circle cx="320" cy="357" r="43"/><circle cx="426" cy="357" r="43"/><circle cx="533" cy="357" r="43"/>
+<circle cx="320" cy="464" r="43"/><circle cx="426" cy="464" r="43"/>
+<circle cx="320" cy="570" r="43"/><circle cx="426" cy="570" r="43"/><circle cx="533" cy="570" r="43"/>
+</g>
+<circle cx="533" cy="464" r="52" fill="#9fceb2" opacity=".75" filter="url(#glow)"/>
+<circle cx="533" cy="464" r="55" fill="none" stroke="#9fceb2" stroke-opacity=".55" stroke-width="3"/>
+<circle cx="533" cy="464" r="69" fill="none" stroke="#9fceb2" stroke-opacity=".25" stroke-width="3"/>
+<circle cx="533" cy="464" r="43" fill="url(#on)"/>
+<text x="426" y="677" text-anchor="middle" font-size="22" font-weight="800" letter-spacing="2.6" fill="#f4f1ea">TOCCA IL CERCHIO ACCESO!</text>
+<rect x="156" y="700" width="541" height="14" rx="7" fill="#1c3450"/>
+<rect x="156" y="700" width="368" height="14" rx="7" fill="url(#bar)"/>
+</g>
+</svg>
